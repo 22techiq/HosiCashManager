@@ -1,4 +1,3 @@
-```javascript
 /*
 ========================================================
 MASC CLINIC DASHBOARD
@@ -1564,4 +1563,4 @@ INITIALIZE
 loadDashboard();
 
 loadCollections();
-```
+
