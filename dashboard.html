@@ -1,48 +1,1215 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MASC Clinic Login</title>
 
-<link rel="stylesheet" href="css/style.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>MASC Clinic | Dashboard</title>
+
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<link rel="stylesheet"
+href="css/style.css">
+
 </head>
+
+
 <body>
 
-<div class="login-container">
 
-    <div class="login-card">
+<!-- MOBILE OVERLAY -->
 
-        <h1>MASC Clinic</h1>
-        <p>Cash Collection Management</p>
+<div
+id="sidebarOverlay"
+class="sidebar-overlay">
+</div>
 
-        <form id="loginForm">
 
-            <div class="input-box">
-                <i class="fa fa-user"></i>
-                <input type="text" id="username" placeholder="Username" required>
-            </div>
+<!-- SIDEBAR -->
 
-            <div class="input-box">
-                <i class="fa fa-lock"></i>
-                <input type="password" id="password" placeholder="Password" required>
-            </div>
+<aside
+id="sidebar"
+class="sidebar">
 
-            <button type="submit">Login</button>
 
-        </form>
+<div class="sidebar-brand">
 
-        <p id="loginMessage"></p>
+<div class="brand-mark">
+<i class="fa-solid fa-heart-pulse"></i>
+</div>
 
-    </div>
+<div>
+
+<strong>MASC</strong>
+
+<span>CLINIC</span>
 
 </div>
 
+</div>
+
+
+<nav class="sidebar-nav">
+
+
+<button
+class="nav-item active"
+data-section="dashboard">
+
+<i class="fa-solid fa-grid-2"></i>
+
+<span>Dashboard</span>
+
+</button>
+
+
+<button
+class="nav-item"
+data-section="collections">
+
+<i class="fa-solid fa-money-bill-wave"></i>
+
+<span>Collections</span>
+
+</button>
+
+
+<button
+class="nav-item"
+data-section="reports">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Reports</span>
+
+</button>
+
+
+<button
+class="nav-item admin-only"
+data-section="users">
+
+<i class="fa-solid fa-users"></i>
+
+<span>Users</span>
+
+</button>
+
+
+<button
+class="nav-item admin-only"
+data-section="audit">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<span>Audit Logs</span>
+
+</button>
+
+
+</nav>
+
+
+<div class="sidebar-bottom">
+
+<div class="secure-status">
+
+<span class="status-dot"></span>
+
+<div>
+
+<strong>System Secure</strong>
+
+<small>Protected session</small>
+
+</div>
+
+</div>
+
+
+<button
+id="logoutButton"
+class="logout-btn">
+
+<i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+<button
+id="menuButton"
+class="mobile-menu">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<div class="page-heading">
+
+<span id="currentDate"></span>
+
+<h1>Dashboard</h1>
+
+</div>
+
+
+<div class="topbar-user">
+
+<div class="user-info">
+
+<strong id="userName">
+User
+</strong>
+
+<span id="userRole">
+User
+</span>
+
+</div>
+
+<div class="avatar"
+id="userAvatar">
+U
+</div>
+
+</div>
+
+</header>
+
+
+<!-- DASHBOARD -->
+
+<section
+id="dashboardSection"
+class="page-section active">
+
+
+<div class="welcome-banner">
+
+<div>
+
+<span class="eyebrow">
+MASC CLINIC
+</span>
+
+<h2>
+Good day, <span id="welcomeName">User</span>
+</h2>
+
+<p>
+Monitor and manage clinic cash collections from one secure workspace.
+</p>
+
+</div>
+
+
+<div class="welcome-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+</div>
+
+
+<!-- STAT CARDS -->
+
+<div class="stats-grid">
+
+
+<div class="stat-card">
+
+<div class="stat-icon today">
+
+<i class="fa-solid fa-calendar-day"></i>
+
+</div>
+
+<div>
+
+<span>Today's Collection</span>
+
+<h3>
+KSh <strong id="todayTotal">0.00</strong>
+</h3>
+
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-icon month">
+
+<i class="fa-solid fa-calendar"></i>
+
+</div>
+
+<div>
+
+<span>This Month</span>
+
+<h3>
+KSh <strong id="monthTotal">0.00</strong>
+</h3>
+
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-icon year">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+<div>
+
+<span>This Year</span>
+
+<h3>
+KSh <strong id="yearTotal">0.00</strong>
+</h3>
+
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-icon transactions">
+
+<i class="fa-solid fa-receipt"></i>
+
+</div>
+
+<div>
+
+<span>Transactions</span>
+
+<h3 id="transactionCount">
+0
+</h3>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- QUICK ACTIONS -->
+
+<div class="section-header">
+
+<div>
+
+<h2>Quick Actions</h2>
+
+<p>Frequently used collection tools</p>
+
+</div>
+
+</div>
+
+
+<div class="quick-grid">
+
+
+<button
+class="quick-card"
+data-section="collections"
+data-action="new">
+
+<div class="quick-icon">
+
+<i class="fa-solid fa-plus"></i>
+
+</div>
+
+<div>
+
+<strong>New Collection</strong>
+
+<span>Record a payment</span>
+
+</div>
+
+<i class="fa-solid fa-chevron-right arrow"></i>
+
+</button>
+
+
+<button
+class="quick-card"
+data-section="reports">
+
+<div class="quick-icon">
+
+<i class="fa-solid fa-file-chart-column"></i>
+
+</div>
+
+<div>
+
+<strong>View Reports</strong>
+
+<span>Analyze collections</span>
+
+</div>
+
+<i class="fa-solid fa-chevron-right arrow"></i>
+
+</button>
+
+
+</div>
+
+
+<!-- RECENT COLLECTIONS -->
+
+<div class="section-header">
+
+<div>
+
+<h2>Recent Collections</h2>
+
+<p>Latest transactions recorded in the system</p>
+
+</div>
+
+
+<button
+class="text-btn"
+data-section="collections">
+
+View all
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</button>
+
+</div>
+
+
+<div class="table-card">
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Receipt</th>
+<th>Service</th>
+<th>Payment</th>
+<th>Amount</th>
+<th>Cashier</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="recentTable">
+
+<tr>
+
+<td
+colspan="6"
+class="empty-row">
+
+Loading collections...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- COLLECTIONS -->
+
+<section
+id="collectionsSection"
+class="page-section">
+
+
+<div class="section-header">
+
+<div>
+
+<span class="eyebrow">
+TRANSACTIONS
+</span>
+
+<h2>Cash Collections</h2>
+
+<p>Record and manage clinic payments.</p>
+
+</div>
+
+
+<button
+id="newCollectionButton"
+class="primary-btn small">
+
+<i class="fa-solid fa-plus"></i>
+
+New Collection
+
+</button>
+
+</div>
+
+
+<!-- COLLECTION FORM -->
+
+<div
+id="collectionFormCard"
+class="form-card hidden">
+
+
+<div class="form-card-header">
+
+<div>
+
+<h3>Record Collection</h3>
+
+<p>Enter the payment details below.</p>
+
+</div>
+
+<button
+id="closeCollectionForm"
+class="icon-btn">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+
+<form id="collectionForm">
+
+
+<input
+type="hidden"
+id="collectionId"
+>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Patient Name</label>
+
+<input
+type="text"
+id="patient"
+placeholder="Patient name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Receipt Number</label>
+
+<input
+type="text"
+id="receipt"
+placeholder="Auto-generated if empty"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Service</label>
+
+<select id="service">
+
+<option value="">Select service</option>
+
+<option>Consultation</option>
+
+<option>Laboratory</option>
+
+<option>Pharmacy</option>
+
+<option>Injection</option>
+
+<option>Procedure</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Amount (KSh)</label>
+
+<input
+type="number"
+id="amount"
+min="1"
+step="0.01"
+placeholder="0.00"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Payment Method</label>
+
+<select id="payment" required>
+
+<option value="">Select payment method</option>
+
+<option>Cash</option>
+
+<option>M-Pesa</option>
+
+<option>Card</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Date</label>
+
+<input
+type="date"
+id="collectionDate"
+required
+>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Notes</label>
+
+<textarea
+id="notes"
+rows="3"
+placeholder="Optional notes..."
+></textarea>
+
+</div>
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+type="button"
+id="cancelCollection"
+class="secondary-btn">
+
+Cancel
+
+</button>
+
+
+<button
+type="submit"
+class="primary-btn"
+id="saveCollectionButton">
+
+<i class="fa-solid fa-check"></i>
+
+Save Collection
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+
+<!-- COLLECTION FILTER -->
+
+<div class="filter-card">
+
+
+<div class="filter-header">
+
+<div>
+
+<h3>Collection History</h3>
+
+<p>Search and filter recorded transactions.</p>
+
+</div>
+
+
+<div class="filter-actions">
+
+<select id="collectionFilter">
+
+<option value="daily">Today</option>
+
+<option value="monthly">This Month</option>
+
+<option value="yearly">This Year</option>
+
+<option value="range">Custom Range</option>
+
+</select>
+
+
+<input
+type="date"
+id="filterFrom"
+class="range-input"
+>
+
+
+<input
+type="date"
+id="filterTo"
+class="range-input"
+>
+
+
+<button
+id="applyFilter"
+class="primary-btn small">
+
+Apply
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="report-summary">
+
+<div>
+
+<span>Transactions</span>
+
+<strong id="filteredCount">
+0
+</strong>
+
+</div>
+
+
+<div>
+
+<span>Total</span>
+
+<strong id="filteredTotal">
+KSh 0.00
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="table-card">
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Receipt</th>
+<th>Patient</th>
+<th>Service</th>
+<th>Payment</th>
+<th>Amount</th>
+<th>Cashier</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="collectionsTable">
+
+<tr>
+
+<td
+colspan="8"
+class="empty-row">
+
+No collections found.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REPORTS -->
+
+<section
+id="reportsSection"
+class="page-section">
+
+
+<div class="section-header">
+
+<div>
+
+<span class="eyebrow">
+FINANCIAL ANALYTICS
+</span>
+
+<h2>Collection Reports</h2>
+
+<p>Analyze clinic revenue across different periods.</p>
+
+</div>
+
+
+<button
+id="pdfButton"
+class="primary-btn admin-only">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+Download PDF
+
+</button>
+
+</div>
+
+
+<div class="report-filter-card">
+
+<div class="report-filter-tabs">
+
+<button
+class="report-tab active"
+data-filter="daily">
+
+Daily
+
+</button>
+
+<button
+class="report-tab"
+data-filter="monthly">
+
+Monthly
+
+</button>
+
+<button
+class="report-tab"
+data-filter="yearly">
+
+Annual
+
+</button>
+
+<button
+class="report-tab"
+data-filter="range">
+
+Custom Range
+
+</button>
+
+</div>
+
+
+<div class="range-fields">
+
+<input
+type="date"
+id="reportFrom"
+>
+
+<input
+type="date"
+id="reportTo"
+>
+
+<button
+id="applyReport"
+class="primary-btn">
+
+Generate Report
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="report-total-card">
+
+<div>
+
+<span>Total Collections</span>
+
+<h2 id="reportTotal">
+KSh 0.00
+</h2>
+
+</div>
+
+<div class="report-total-icon">
+
+<i class="fa-solid fa-money-bill-trend-up"></i>
+
+</div>
+
+</div>
+
+
+<div class="chart-card">
+
+<div class="section-header">
+
+<div>
+
+<h3>Collection Overview</h3>
+
+<p>Revenue performance for the selected period.</p>
+
+</div>
+
+</div>
+
+<div class="chart-container">
+
+<canvas id="collectionChart"></canvas>
+
+</div>
+
+</div>
+
+
+<div class="table-card">
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Receipt</th>
+<th>Service</th>
+<th>Payment</th>
+<th>Amount</th>
+<th>Cashier</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="reportTable">
+
+<tr>
+
+<td
+colspan="6"
+class="empty-row">
+
+Generate a report to view data.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- USERS -->
+
+<section
+id="usersSection"
+class="page-section admin-section">
+
+
+<div class="section-header">
+
+<div>
+
+<span class="eyebrow">
+ADMINISTRATION
+</span>
+
+<h2>System Users</h2>
+
+<p>Authorized MASC Clinic system users.</p>
+
+</div>
+
+</div>
+
+
+<div class="table-card">
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Username</th>
+<th>Name</th>
+<th>Role</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="usersTable">
+
+<tr>
+
+<td
+colspan="4"
+class="empty-row">
+
+Loading users...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AUDIT -->
+
+<section
+id="auditSection"
+class="page-section admin-section">
+
+
+<div class="section-header">
+
+<div>
+
+<span class="eyebrow">
+SECURITY
+</span>
+
+<h2>Audit Logs</h2>
+
+<p>System activity and accountability records.</p>
+
+</div>
+
+</div>
+
+
+<div class="audit-info">
+
+<div class="audit-icon">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+</div>
+
+<div>
+
+<strong>Audit protection enabled</strong>
+
+<p>
+All important financial actions are recorded by the
+Google Apps Script backend.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- TOAST -->
+
+<div
+id="toast"
+class="toast">
+
+<i id="toastIcon"></i>
+
+<span id="toastMessage"></span>
+
+</div>
+
+
+<!-- CONFIRM MODAL -->
+
+<div
+id="confirmModal"
+class="modal-overlay hidden">
+
+<div class="modal">
+
+<div class="modal-icon danger">
+
+<i class="fa-solid fa-trash"></i>
+
+</div>
+
+<h3>Delete Collection?</h3>
+
+<p>
+This action cannot be undone. The deletion will be
+recorded in the audit log.
+</p>
+
+<div class="modal-actions">
+
+<button
+id="cancelDelete"
+class="secondary-btn">
+
+Cancel
+
+</button>
+
+<button
+id="confirmDelete"
+class="danger-btn">
+
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
 <script src="js/api.js"></script>
-<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
 
 </body>
+
 </html>
+```
