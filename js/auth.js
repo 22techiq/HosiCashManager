@@ -1,4 +1,4 @@
-```javascript
+
 /*
 ========================================================
 MASC CLINIC AUTHENTICATION
@@ -260,4 +260,4 @@ function showLoginMessage(
         "login-message " + type;
 
 }
-```
+
