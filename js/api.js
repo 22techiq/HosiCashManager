@@ -1,4 +1,3 @@
-```javascript
 /*
 ========================================================
 MASC CLINIC API CLIENT
@@ -6,7 +5,7 @@ MASC CLINIC API CLIENT
 */
 
 const API_URL =
-    "https://script.google.com/macros/s/AKfycbzm9KC3IRhMwO8DmkGqeSubTy52PoBJ6FAHJYMKY6Yy1laWtKSCnl9PCruX6-Votkua/exec";
+    "https://script.google.com/macros/s/AKfycbz3yNikOozPJf-c9cbwm8y3vC-8bBfWfvLSX6LeJyL9AUbmWmNm65t872QpA2prG5be/exec";
 
 
 function getToken() {
@@ -229,4 +228,3 @@ function showToast(
     }, 3500);
 
 }
-```
