@@ -583,7 +583,8 @@ placeholder="Auto-generated if empty"
 
 </div>
 
-
+<!--INITIAL FORM-->
+<!--
 <div class="form-group">
 
 <label>Service</label>
@@ -607,8 +608,35 @@ placeholder="Auto-generated if empty"
 </select>
 
 </div>
+-->
+<!--END OF INITIAL FORM-->
 
+  
+<!--CUSTOM INPUT FORM FULLY OPERATIONAL-->
+<div class="form-group">
+  <label>Service</label>
 
+  <select id="service" onchange="toggleOtherService()">
+    <option value="">Select service</option>
+    <option value="Consultation">Consultation</option>
+    <option value="Laboratory">Laboratory</option>
+    <option value="Pharmacy">Pharmacy</option>
+    <option value="Injection">Injection</option>
+    <option value="Procedure">Procedure</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <input
+    type="text"
+    id="otherService"
+    placeholder="Enter service name"
+    style="display:none; margin-top:10px; width:100%;"
+  >
+</div>
+<!--END OF CUSTOM INPUT FORM FULLY OPERATIONAL-->
+  
+
+  
 <div class="form-group">
 
 <label>Amount (KSh)</label>
@@ -1203,7 +1231,31 @@ Delete
 </div>
 
 </div>
+<!--Custom form js-->
+<script>
+function toggleOtherService() {
+  const service = document.getElementById("service");
+  const other = document.getElementById("otherService");
 
+  if (service.value === "Other") {
+    other.style.display = "block";
+    other.required = true;
+    other.focus();
+  } else {
+    other.style.display = "none";
+    other.required = false;
+    other.value = "";
+  }
+}
+
+// Returns the correct service value
+function getServiceValue() {
+  const service = document.getElementById("service").value;
+  const other = document.getElementById("otherService").value.trim();
+
+  return service === "Other" ? other : service;
+}
+</script>
 
 <script src="js/api.js"></script>
 <script src="js/dashboard.js"></script>
