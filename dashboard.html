@@ -1238,28 +1238,40 @@ Delete
 <!--Custom form js-->
 <script>
 function toggleOtherService() {
-  const service = document.getElementById("service");
+  const select = document.getElementById("serviceSelect");
   const other = document.getElementById("otherService");
+  const hidden = document.getElementById("service");
 
-  if (service.value === "Other") {
+  if (select.value === "Other") {
     other.style.display = "block";
     other.required = true;
+    other.value = "";
+    hidden.value = "";
     other.focus();
   } else {
     other.style.display = "none";
     other.required = false;
     other.value = "";
+    hidden.value = select.value;
   }
 }
 
-// Returns the correct service value
-function getServiceValue() {
-  const service = document.getElementById("service").value;
-  const other = document.getElementById("otherService").value.trim();
-
-  return service === "Other" ? other : service;
+function updateServiceValue() {
+  document.getElementById("service").value =
+    document.getElementById("otherService").value.trim();
 }
+
+// Ensure the hidden field is correct before Save Collection submits
+document.getElementById("collectionForm").addEventListener("submit", function () {
+  const select = document.getElementById("serviceSelect");
+  const hidden = document.getElementById("service");
+
+  hidden.value = select.value === "Other"
+    ? document.getElementById("otherService").value.trim()
+    : select.value;
+});
 </script>
+
 
 <script src="js/api.js"></script>
 <script src="js/dashboard.js"></script>
