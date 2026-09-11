@@ -616,7 +616,7 @@ placeholder="Auto-generated if empty"
 <div class="form-group">
   <label>Service</label>
 
-  <select id="service" onchange="toggleOtherService()">
+  <select id="serviceSelect" onchange="toggleOtherService()">
     <option value="">Select service</option>
     <option value="Consultation">Consultation</option>
     <option value="Laboratory">Laboratory</option>
@@ -631,7 +631,11 @@ placeholder="Auto-generated if empty"
     id="otherService"
     placeholder="Enter service name"
     style="display:none; margin-top:10px; width:100%;"
+    oninput="updateServiceValue()"
   >
+
+  <!-- Your existing JS will read this -->
+  <input type="hidden" id="service">
 </div>
 <!--END OF CUSTOM INPUT FORM FULLY OPERATIONAL-->
   
